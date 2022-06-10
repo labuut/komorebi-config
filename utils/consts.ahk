@@ -24,3 +24,9 @@ global INIT_WORKSPACE_INDEX = 0
 global WORKSPACE_INDEXES = {  0: INIT_WORKSPACE_INDEX
                             , 1: INIT_WORKSPACE_INDEX
                             , 2: INIT_WORKSPACE_INDEX }
+
+
+; Layouts
+; possible values: bsp, columns, rows, vertical-stack, horizontal-stack, ultrawide-vertical-stack
+global LAYOUTS = ["bsp", "vertical-stack", "columns"]
+global LAYOUT_INDEX = 1

@@ -1,8 +1,6 @@
 #SingleInstance Force
 
 #Include %A_ScriptDir%\utils\index.ahk
-; #Include %A_ScriptDir%\handlers.ahk
-; #Include %A_ScriptDir%\consts.ahk
 
 
 ; ! Alt
@@ -39,6 +37,7 @@
 #Enter::Run, komorebic.exe promote, , Hide return
 
 ;; LAYOUTS:
+#!l::handleChangeLayoutKey()
 ; VERTICAL-STACK layout (Win + ):
 ;#t::Run, komorebic.exe change-layout vertical-stack, , Hide return
 ; @@@ Switch to COLUMN layout (Win + ):

@@ -66,3 +66,9 @@ handleMoveKey(direction) {
   }
   return
 }
+
+handleChangeLayoutKey() {
+  changeLayout()
+
+  return
+}
