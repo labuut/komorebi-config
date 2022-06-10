@@ -38,8 +38,13 @@ setMonitorKmrIndexByDirection(direction) {
 }
 
 getCurrentMonitorAhkIndex() {
-    WinGetActiveStats, winTitle, W, H, winX, winY
 	SysGet, monitorsCount, MonitorCount
+    WinGetActiveStats, winTitle, W, H, winX, winY
+
+    ; this value depends on params `invisible-borders` and `workspace-padding` from `config.ahk`
+    ; it can recognize by AHK's `Window Spy` (`Active Window Position`)
+    offset := 3
+    offsettedWinX := winX + offset
 
 	Loop %monitorsCount% {
         SysGet, monitor, MonitorWorkArea, %a_index%
@@ -48,14 +53,14 @@ getCurrentMonitorAhkIndex() {
         isRightMonitor := a_index = monitorsCount
         
         ; window can be more left then monitorLeft
-        if (isLeftMonitor && (winX < monitorLeft)) {
+        if (isLeftMonitor && (offsettedWinX < monitorLeft)) {
             return %a_index%
         }
-        ; window can be more left then monitorRight
-        if (isRightMonitor && (winX > monitorRight)) {
+        ; window can be more right then monitorRight
+        if (isRightMonitor && (offsettedWinX > monitorRight)) {
             return %a_index%
         }
-		if (winX >= monitorLeft && winX < monitorRight) {
+		if (offsettedWinX >= monitorLeft && offsettedWinX < monitorRight) {
 			return %a_index%
         }
 	}
