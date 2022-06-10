@@ -55,7 +55,7 @@ notifyMonitorAndWorkspace(monitor, workspace) {
     SysGet, monitor, MonitorWorkArea, %monitorAhkIndex%
 
     CoordMode, ToolTip, Screen
-    ToolTip, monitor: %monitor%`nworkspace: %workspace%
+    ToolTip, monitor: %monitor%`nworkspace: %workspace%, %monitorLeft%, %monitorTop%
     Sleep, 500
     ToolTip
 
