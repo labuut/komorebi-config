@@ -64,6 +64,7 @@ handleMoveKey(direction) {
           notifyMonitorAndWorkspace(monitorIndex, workspaceIndex)
     }
   }
+  
   return
 }
 
