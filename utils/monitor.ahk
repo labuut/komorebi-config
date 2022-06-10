@@ -94,10 +94,10 @@ calculateMonitorCenterY(monitorKmrIndex) {
 moveMouseToMonitorByDirection(direction) {
     setMonitorKmrIndexByDirection(direction)
 
-    newKomMonitorIndex := getMonitorKmrIndex()
+    newMonitorKmrIndex := getMonitorKmrIndex()
 
-    centerX := calculateMonitorCenterX(newKomMonitorIndex)
-    centerY := calculateMonitorCenterY(newKomMonitorIndex)
+    centerX := calculateMonitorCenterX(newMonitorKmrIndex)
+    centerY := calculateMonitorCenterY(newMonitorKmrIndex)
 
     CoordMode, Mouse, Screen 
     MouseMove, centerX, centerY
