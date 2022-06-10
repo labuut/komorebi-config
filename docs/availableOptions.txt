@@ -1,5 +1,5 @@
 komorebic [command] --help
-komorebic ensure-workspaces --help
+komorebic workspace-layout --help
 
 
 query                                      Query the current window manager state
@@ -17,12 +17,7 @@ load-custom-layout                         Load a custom layout from file for th
 
 workspace-tiling                           Enable or disable window tiling for the specified workspace
 
-toggle-window-container-behaviour          Toggle the behaviour for new windows (stacking or dynamic tiling)
-toggle-pause                               Toggle window tiling on the focused workspace
-toggle-tiling                              Toggle window tiling on the focused workspace
-toggle-float                               Toggle floating mode for the focused window
-toggle-monocle                             Toggle monocle mode for the focused container
-toggle-maximize                            Toggle native maximization for the focused window
+
 restore-windows                            Restore all hidden windows (debugging command)
 
 
@@ -104,3 +99,9 @@ workspace-custom-layout-rule               Add a dynamic custom layout for the s
 manage                                     Force komorebi to manage the focused window
 unmanage                                   Unmanage a window that was forcibly managed
 reload-configuration                       Reload ~/komorebi.ahk (if it exists)
+toggle-window-container-behaviour          Toggle the behaviour for new windows (stacking or dynamic tiling)
+toggle-pause                               Toggle window tiling on the focused workspace
+toggle-tiling                              Toggle window tiling on the focused workspace
+toggle-float                               Toggle floating mode for the focused window
+toggle-monocle                             Toggle monocle mode for the focused container
+toggle-maximize                            Toggle native maximization for the focused window
