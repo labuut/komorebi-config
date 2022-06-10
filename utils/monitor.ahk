@@ -69,10 +69,10 @@ calculateMonitorCenterX(monitorKmrIndex) {
     centerX :=
 
     if (Abs(monitorRight) > Abs(monitorLeft)) {
-        centerX := (monitorRight - monitorLeft) / 2 + monitorLeft
+        centerX := (monitorRight - monitorLeft) / 4 + monitorLeft
     }
     if (Abs(monitorRight) < Abs(monitorLeft)) {
-        centerX := (monitorLeft - monitorRight) / 2 + monitorRight
+        centerX := (monitorLeft - monitorRight) / 4 + monitorRight
     }
 
     return centerX
