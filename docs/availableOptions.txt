@@ -1,36 +1,20 @@
 komorebic [command] --help
-komorebic workspace-layout --help
+komorebic manage-rule --help
 
 
-query                                      Query the current window manager state
 subscribe                                  Subscribe to komorebi events
 unsubscribe                                Unsubscribe from komorebi events
 quick-save-resize                          Quicksave the current resize layout dimensions
 quick-load-resize                          Load the last quicksaved resize layout dimensions
 save-resize                                Save the current resize layout dimensions to a file
 load-resize                                Load the resize layout dimensions from a file
-
-
 load-custom-layout                         Load a custom layout from file for the focused workspace
-
-
-
 workspace-tiling                           Enable or disable window tiling for the specified workspace
-
-
 restore-windows                            Restore all hidden windows (debugging command)
-
-
-window-hiding-behaviour                    Set the window behaviour when switching workspaces / cycling stacks
 unmanaged-window-operation-behaviour       Set the operation behaviour when the focused window is not managed
-
-
-
 ahk-library                                Generate a library of AutoHotKey helper functions
 ahk-app-specific-configuration             Generate common app-specific configurations and fixes to use in komorebi.ahk
 format-app-specific-configuration          Format a YAML file for use with the 'ahk-app-specific-configuration' command
-notification-schema                        Generate a JSON Schema of subscription notifications
-help                                       Print this message or the help of the given subcommand(s)
 
 ---------------------------------------------------------
 
@@ -54,13 +38,17 @@ focus-follows-mouse                        Enable or disable focus follows mouse
 mouse-follows-focus                        Enable or disable mouse follows focus on all workspaces
 workspace-name                             Set the workspace name for the specified workspace
 watch-configuration                        Enable or disable watching of ~/komorebi.ahk (if it exists)
+window-hiding-behaviour                    Set the window behaviour when switching workspaces / cycling stacks
+help                                       Print this message or the help of the given subcommand(s)
+notification-schema                        Generate a JSON Schema of subscription notifications
+state                                      Show a JSON representation of the current window manager state
 
 
 
 ---------------------------------------------------------
 
 HOTKEYS:
-state                                      Show a JSON representation of the current window manager state
+query                                      Query the current window manager state
 change-layout                              Set the layout on the focused workspace
 adjust-container-padding                   Adjust container padding on the focused workspace
 adjust-workspace-padding                   Adjust workspace padding on the focused workspace
