@@ -8,9 +8,6 @@
 ; # Win / LWin, the left Windows key
 ; + Shift
 
-#!k::Run, komorebic.exe start, , Hide return
-#^k::Run, komorebic.exe stop, , Hide return
-
 ;; WINDOWS;
 ; Change focus (Win + Arrows):
 #Left::handleChangeFocusKey("left")
@@ -37,36 +34,30 @@
 #Enter::Run, komorebic.exe promote, , Hide return
 
 ;; LAYOUTS:
+; Change layout in circle (see LAYOUTS array)
 #!l::handleChangeLayoutKey()
-; VERTICAL-STACK layout (Win + ):
-;#t::Run, komorebic.exe change-layout vertical-stack, , Hide return
-; @@@ Switch to COLUMN layout (Win + ):
-;#c::Run, komorebic.exe change-layout columns, , Hide return
-; @@@ Switch to ULTRAWIDE-VERTICAL-STACK layout (Win + ):
-;#w::Run, komorebic.exe change-layout ultrawide-vertical-stack, , Hide return
 
 ; Flip horizontally (Win + X):
 #x::Run, komorebic.exe flip-layout horizontal, , Hide return
+
 ; Flip vertically (Win + Y):
 #y::Run, komorebic.exe flip-layout vertical, , Hide return
 
 ; Force a retile if things get janky (Win + Alt + R):
 #!r::Run, komorebic.exe retile, , Hide return
+
 ; Float the focused window (Win + Alt + F):
 #!f::Run, komorebic.exe toggle-float, , Hide return
 
 ;; SERVICE:
-; Reload ~/komorebi.ahk (Win + Ctrl + R):
-#^r::
-Run, komorebic.exe reload-configuration, , Hide
-return
+; Komorebi start/stop (Win + Alt/Ctrl + K)
+#!k::Run, komorebic.exe start, , Hide return
+#^k::Run, komorebic.exe stop, , Hide return
 
-; Pause responding to any window events or komorebic commands, Alt + P
-;!p::
-;Run, komorebic.exe toggle-pause, , Hide
-;return
-
-#^s::Run, komorebic.exe save %A_ScriptDir%\layouts\primary.json ; saves the focused workspace to $Env:USERPROFILE\layouts\primary.json
+; TEST
+; #m::
+; Run, komorebic.exe manage, , Hide
+; return
 
 
 
