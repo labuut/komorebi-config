@@ -2,18 +2,15 @@
 
 #Include %A_ScriptDir%\utils\index.ahk
 
-; detectActiveWindowIsChanged()
-; handleInit() {
-;   ; detectActiveWindowIsChanged()
-; }
 
-; handleChangeActiveWindow() {
-;     monitorAhkIndex := getCurrentMonitorAhkIndex()
-;     currentMonitorIndex := toMonitorKmrIndex(monitorAhkIndex)
+handleChangeActiveWindow() {
+  currentMonitorAhkIndex := getCurrentMonitorAhkIndex()
+  currentMonitorKmrIndex := toMonitorKmrIndex(currentMonitorAhkIndex)
 
-;     setMonitorKmrIndex(currentMonitorIndex)
-;     notifyCurrentMonitor()
-; }
+  setMonitorKmrIndex(currentMonitorKmrIndex)
+  
+  notifyCurrentMonitor()
+}
 
 handleChangeFocusKey(direction) {
   WinGet, currentPID, PID, A
