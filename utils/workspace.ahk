@@ -47,20 +47,3 @@ moveWindowToWorkspaceByDirection(direction) {
 
     Run, komorebic.exe move-to-workspace %workspaceIndex%, , Hide
 }
-
-notifyMonitorAndWorkspace(monitor, workspace) {
-    monitorKmrIndex := getMonitorKmrIndex()
-    monitorAhkIndex := toMonitorAhkIndex(monitorKmrIndex)
-
-    SysGet, monitor, MonitorWorkArea, %monitorAhkIndex%
-
-    CoordMode, ToolTip, Screen
-    ToolTip, monitor: %monitor%`nworkspace: %workspace%, %monitorLeft%, %monitorTop%
-    Sleep, 500
-    ToolTip
-
-    ; SetTimer, removeToolTip, -2000
-    ; removeToolTip: 
-        ; ToolTip
-        ; return
-}

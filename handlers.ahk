@@ -1,14 +1,19 @@
 #SingleInstance Force
 
-#Include %A_ScriptDir%
+#Include %A_ScriptDir%\utils\index.ahk
 
+; detectActiveWindowIsChanged()
+; handleInit() {
+;   ; detectActiveWindowIsChanged()
+; }
 
-onChangeActiveWindow() {
-    monitorAhkIndex := getCurrentMonitorAhkIndex()
-    currentMonitorIndex := toMonitorKmrIndex(monitorAhkIndex)
+; handleChangeActiveWindow() {
+;     monitorAhkIndex := getCurrentMonitorAhkIndex()
+;     currentMonitorIndex := toMonitorKmrIndex(monitorAhkIndex)
 
-    setMonitorKmrIndex(currentMonitorIndex)
-}
+;     setMonitorKmrIndex(currentMonitorIndex)
+;     notifyCurrentMonitor()
+; }
 
 handleChangeFocusKey(direction) {
   WinGet, currentPID, PID, A
@@ -25,14 +30,11 @@ handleChangeFocusKey(direction) {
         ; change monitor
         case "left", "right":
           moveMouseToMonitorByDirection(direction)
+          notifyCurrentMonitor()
         ; change workspace
         case "up", "down":
           focusWorkspaceByDirection(direction)
-
-          monitorIndex := getMonitorKmrIndex()
-          workspaceIndex := getWorkspaceIndex(monitorIndex)
-
-          notifyMonitorAndWorkspace(monitorIndex, workspaceIndex)
+          notifyCurrentMonitorAndWorkspace()
     }
   }
 
@@ -54,14 +56,11 @@ handleMoveKey(direction) {
         ; move to monitor
         case "left", "right":
           moveWindowToMonitorByDirection(direction)
+          notifyCurrentMonitor()
         ; move to workspace
         case "up", "down":
           moveWindowToWorkspaceByDirection(direction)
-
-          monitorIndex := getMonitorKmrIndex()
-          workspaceIndex := getWorkspaceIndex(monitorIndex)
-
-          notifyMonitorAndWorkspace(monitorIndex, workspaceIndex)
+          notifyCurrentMonitorAndWorkspace()
     }
   }
   
