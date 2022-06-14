@@ -16,9 +16,9 @@ return
 shellMessage( wParam,lParam ) {
   HSHELL_WINDOWACTIVATED := 4
   HSHELL_RUDEAPPACTIVATED := 32772 ; 0x8004
-    
+  
   if (wParam = HSHELL_WINDOWACTIVATED || wParam = HSHELL_RUDEAPPACTIVATED) {
-    ToolTip, wParam: %wParam%
-    handleChangeActiveWindow()
+    ; ToolTip, wParam: %wParam%
+    ; handleChangeActiveWindow()
   }
 }
