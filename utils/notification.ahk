@@ -1,3 +1,12 @@
+#Persistent
+#Warn
+
+
+removeToolTip() {
+  ToolTip
+  return
+} 
+
 notifyOnCurrentMonitor(string) {
     monitorKmrIndex := getMonitorKmrIndex()
     monitorAhkIndex := toMonitorAhkIndex(monitorKmrIndex)
@@ -6,13 +15,8 @@ notifyOnCurrentMonitor(string) {
 
     CoordMode, ToolTip, Screen
     ToolTip, %string%, %monitorLeft%, %monitorTop%
-    Sleep, 1000
-    ToolTip
 
-    ; SetTimer, removeToolTip, -2000
-    ; removeToolTip: 
-        ; ToolTip
-        ; return
+    SetTimer, removeToolTip, -%NOTIFICATION_TIMEOUT%
 }
 
 notifyCurrentMonitorAndWorkspace() {
