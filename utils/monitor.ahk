@@ -42,7 +42,7 @@ getCurrentMonitorAhkIndex() {
     WinGetActiveStats, winTitle, W, H, winX, winY
 
     ; this value depends on params `invisible-borders` and `workspace-padding` from `config.ahk`
-    ; it can recognize by AHK's `Window Spy` (`Active Window Position`)
+    ; it can be recognize by AHK's `Window Spy` (`Active Window Position`)
     offset := 3
     offsettedWinX := winX + offset
 
@@ -108,7 +108,7 @@ moveWindowToMonitorByDirection(direction) {
     Run, komorebic.exe move-to-monitor %MONITOR_KMR_INDEX%, Hide
 }
 
-; Unusable
+; ; Unusable
 ; focusMonitorByDirection(direction) {
 ;     setMonitorKmrIndexByDirection(direction)
 ;     monitorKmrIndex = getMonitorKmrIndex()
