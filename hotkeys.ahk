@@ -1,5 +1,3 @@
-#SingleInstance Force
-
 #Include %A_ScriptDir%\utils\index.ahk
 
 

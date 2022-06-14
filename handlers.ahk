@@ -1,4 +1,5 @@
-#SingleInstance Force
+#Persistent
+#Warn
 
 #Include %A_ScriptDir%\utils\index.ahk
 

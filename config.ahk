@@ -1,5 +1,3 @@
-#SingleInstance Force
-
 ; Mouse
 Run, komorebic.exe focus-follows-mouse enable, , Hide
 Run, komorebic.exe mouse-follows-focus enable, , Hide
