@@ -19,19 +19,21 @@ notifyOnCurrentMonitor(string) {
     SetTimer, removeToolTip, -%NOTIFICATION_TIMEOUT%
 }
 
-notifyCurrentMonitorAndWorkspace() {
+notifyCurrentMonitorAndWorkspace(firstString = "") {
   monitorKmrIndex := getMonitorKmrIndex()
   workspaceIndex := getWorkspaceIndex(monitorKmrIndex)
 
-  string := "monitor: " monitorKmrIndex "`nworkspace: " workspaceIndex
+  begining := firstString ? firstString "`n" : ""
+  finalString := begining "Monitor: " monitorKmrIndex "`nWorkspace: " workspaceIndex
 
-  notifyOnCurrentMonitor(string)
+  notifyOnCurrentMonitor(finalString)
 }
 
-notifyCurrentMonitor() {
+notifyCurrentMonitor(firstString = "") {
   monitorKmrIndex := getMonitorKmrIndex()
 
-  string := "monitor: " monitorKmrIndex
+  begining := firstString ? firstString "`n" : ""
+  finalString := firstString "Monitor: " monitorKmrIndex
 
-  notifyOnCurrentMonitor(string)
+  notifyOnCurrentMonitor(finalString)
 }
