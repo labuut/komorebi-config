@@ -3,15 +3,17 @@
 #Include %A_ScriptDir%\utils\index.ahk
 
 
+; Not usable now
 handleChangeActiveWindow() {
   currentMonitorAhkIndex := getCurrentMonitorAhkIndex()
   currentMonitorKmrIndex := toMonitorKmrIndex(currentMonitorAhkIndex)
 
   setMonitorKmrIndex(currentMonitorKmrIndex)
-  
-  notifyCurrentMonitor()
-}
 
+  ; notifyCurrentMonitorAndWorkspace("Change Active Window")
+  notifyCurrentMonitorAndWorkspace()
+}
+  
 handleChangeFocusKey(direction) {
   WinGet, currentPID, PID, A
 
@@ -27,12 +29,13 @@ handleChangeFocusKey(direction) {
         ; change monitor
         case "left", "right":
           moveMouseToMonitorByDirection(direction)
-          notifyCurrentMonitor()
         ; change workspace
         case "up", "down":
           focusWorkspaceByDirection(direction)
-          notifyCurrentMonitorAndWorkspace()
     }
+
+    ; notifyCurrentMonitorAndWorkspace("Change Focus")
+    notifyCurrentMonitorAndWorkspace()
   }
 
   return
@@ -53,12 +56,13 @@ handleMoveKey(direction) {
         ; move to monitor
         case "left", "right":
           moveWindowToMonitorByDirection(direction)
-          notifyCurrentMonitor()
         ; move to workspace
         case "up", "down":
           moveWindowToWorkspaceByDirection(direction)
-          notifyCurrentMonitorAndWorkspace()
     }
+
+    ; notifyCurrentMonitorAndWorkspace("Move Key")
+    notifyCurrentMonitorAndWorkspace()
   }
   
   return
