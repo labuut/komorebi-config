@@ -1,6 +1,6 @@
-#SingleInstance Force
-
-global PROCESS_DELAY := 200
+; Timeouts
+global PROCESS_DELAY := 400
+global NOTIFICATION_TIMEOUT := 2000
 
 ; Monitors
 global MIN_MONITOR_KMR_INDEX = 0
