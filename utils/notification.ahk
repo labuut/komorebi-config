@@ -37,3 +37,10 @@ notifyCurrentMonitor(firstString = "") {
 
   notifyOnCurrentMonitor(finalString)
 }
+
+notifyCurrentLayout() {
+  layoutIndex := getLayoutIndex()
+  layoutName := getLayoutName(layoutIndex)
+
+  notifyOnCurrentMonitor(layoutName)
+}
