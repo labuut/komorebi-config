@@ -52,7 +52,6 @@ getActiveMonitorAhkIndexByCursor() {
             && (yCoord < monitorBottom)
 
         if (isActiveMonitor) {
-            ToolTip, currentMonitor: %a_index%
 			return %a_index%ActiveMon := A_Index
 		}
 	}

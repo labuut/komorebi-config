@@ -11,7 +11,6 @@ handleChangeActiveWindow() {
   setMonitorKmrIndex(currentMonitorKmrIndex)
 
   ; notifyCurrentMonitorAndWorkspace("Change Active Window")
-  ; notifyCurrentMonitorAndWorkspace()
 }
   
 handleChangeFocusKey(direction) {
@@ -28,13 +27,20 @@ handleChangeFocusKey(direction) {
       switch direction {
         ; change monitor
         case "left", "right":
+          newMonitorIndex := getMonitorKmrIndexByDirection(direction)
+          setMonitorKmrIndex(newMonitorIndex)
           moveMouseToMonitorByDirection(direction)
         ; change workspace
         case "up", "down":
           focusWorkspaceByDirection(direction)
     }
+      
+    isWorkspaceEmpty := checkIsScreenEmpty()
 
-    ; notifyCurrentMonitorAndWorkspace("Change Focus")
+    if (isWorkspaceEmpty) {
+      Click
+    }
+
     notifyCurrentMonitorAndWorkspace()
   }
 
@@ -55,13 +61,14 @@ handleMoveKey(direction) {
       switch direction {
         ; move to monitor
         case "left", "right":
+          newMonitorIndex := getMonitorKmrIndexByDirection(direction)
+          setMonitorKmrIndex(newMonitorIndex)
           moveWindowToMonitorByDirection(direction)
         ; move to workspace
         case "up", "down":
           moveWindowToWorkspaceByDirection(direction)
     }
 
-    ; notifyCurrentMonitorAndWorkspace("Move Key")
     notifyCurrentMonitorAndWorkspace()
   }
   
