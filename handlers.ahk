@@ -3,7 +3,6 @@
 #Include %A_ScriptDir%\utils\index.ahk
 
 
-; Not usable now
 handleChangeActiveWindow() {
   currentMonitorAhkIndex := getActiveMonitorAhkIndexByCursor()
   currentMonitorKmrIndex := toMonitorKmrIndex(currentMonitorAhkIndex)
@@ -12,8 +11,44 @@ handleChangeActiveWindow() {
 
   ; notifyCurrentMonitorAndWorkspace("Change Active Window")
 }
+
+handleFocusWorkspaceByIndex(workspaceIndex) {
+  currentMonitorKmrIndex := getMonitorKmrIndex()
+  setWorkspaceIndex(currentMonitorKmrIndex, workspaceIndex)
+
+  Run, komorebic.exe focus-workspace %workspaceIndex%, , Hide
+
+  notifyCurrentMonitorAndWorkspace()
+}
+
+handleFocusMonitorByDirection(direction) {
+  newMonitorIndex := getMonitorKmrIndexByDirection(direction)
+  setMonitorKmrIndex(newMonitorIndex)
   
-handleChangeFocusKey(direction) {
+  moveMouseToMonitorByDirection(direction)
+  
+  isScreenEmpty := checkIsScreenEmpty()
+
+  if (isScreenEmpty) {
+    Click
+  }
+
+  notifyCurrentMonitorAndWorkspace()
+}
+
+handleFocusWorkspaceByDirection(direction) {
+  focusWorkspaceByDirection(direction)
+  
+  isScreenEmpty := checkIsScreenEmpty()
+
+  if (isScreenEmpty) {
+    Click
+  }
+
+  notifyCurrentMonitorAndWorkspace()
+}
+  
+handleChangeFocus(direction) {
   WinGet, currentPID, PID, A
 
   Run, komorebic.exe focus %direction%, , Hide
@@ -27,27 +62,44 @@ handleChangeFocusKey(direction) {
       switch direction {
         ; change monitor
         case "left", "right":
-          newMonitorIndex := getMonitorKmrIndexByDirection(direction)
-          setMonitorKmrIndex(newMonitorIndex)
-          moveMouseToMonitorByDirection(direction)
+          handleFocusMonitorByDirection(direction)
         ; change workspace
         case "up", "down":
-          focusWorkspaceByDirection(direction)
+          handleFocusWorkspaceByDirection(direction)
     }
-      
-    isWorkspaceEmpty := checkIsScreenEmpty()
-
-    if (isWorkspaceEmpty) {
-      Click
-    }
-
-    notifyCurrentMonitorAndWorkspace()
   }
-
-  return
 }
 
-handleMoveKey(direction) {
+handleMoveToWorkspaceByIndex(workspaceIndex) {
+  currentMonitorKmrIndex := getMonitorKmrIndex()
+  setWorkspaceIndex(currentMonitorKmrIndex, workspaceIndex)
+
+  Run, komorebic.exe move-to-workspace %workspaceIndex%, , Hide
+
+  notifyCurrentMonitorAndWorkspace()
+}
+
+handleMoveToWorkspaceByDirection(direction) {
+  setWorkspaceIndexByDirection(direction)
+
+  monitorKmrIndex := getMonitorKmrIndex()
+  workspaceIndex := getWorkspaceIndex(monitorKmrIndex)
+
+  Run, komorebic.exe move-to-workspace %workspaceIndex%, , Hide
+
+  notifyCurrentMonitorAndWorkspace()
+}
+
+handleMoveToMonitorByDirection(direction) {
+  newMonitorIndex := getMonitorKmrIndexByDirection(direction)
+  setMonitorKmrIndex(newMonitorIndex)
+
+  Run, komorebic.exe move-to-monitor %MONITOR_KMR_INDEX%, Hide
+
+  notifyCurrentMonitorAndWorkspace()
+}
+
+handleMoveWindow(direction) {
   WinGetPos, currentX, currentY,,, A
 
   Run, komorebic.exe move %direction%, , Hide
@@ -61,39 +113,15 @@ handleMoveKey(direction) {
       switch direction {
         ; move to monitor
         case "left", "right":
-          newMonitorIndex := getMonitorKmrIndexByDirection(direction)
-          setMonitorKmrIndex(newMonitorIndex)
-          moveWindowToMonitorByDirection(direction)
+          handleMoveToMonitorByDirection(direction)
         ; move to workspace
         case "up", "down":
-          moveWindowToWorkspaceByDirection(direction)
+          handleMoveToWorkspaceByDirection(direction)
     }
-
-    notifyCurrentMonitorAndWorkspace()
   }
-  
-  return
 }
 
 handleChangeLayoutKey() {
   changeLayout()
   notifyCurrentLayout()
-}
-
-handleChangeWorkspaceKey(workspaceIndex) {
-  currentMonitorKmrIndex := getMonitorKmrIndex()
-  setWorkspaceIndex(currentMonitorKmrIndex, workspaceIndex)
-
-  Run, komorebic.exe focus-workspace %workspaceIndex%, , Hide
-
-  notifyCurrentMonitorAndWorkspace()
-}
-
-handleMoveToWorkspaceKey(workspaceIndex) {
-  currentMonitorKmrIndex := getMonitorKmrIndex()
-  setWorkspaceIndex(currentMonitorKmrIndex, workspaceIndex)
-
-  Run, komorebic.exe move-to-workspace %workspaceIndex%, , Hide
-
-  notifyCurrentMonitorAndWorkspace()
 }

@@ -9,16 +9,16 @@
 
 ;; WINDOWS:
 ; Change focus (Win + Arrows):
-#Left::handleChangeFocusKey("left")
-#Right::handleChangeFocusKey("right")
-#Up::handleChangeFocusKey("up")
-#Down::handleChangeFocusKey("down")
+#Left::handleChangeFocus("left")
+#Right::handleChangeFocus("right")
+#Up::handleChangeFocus("up")
+#Down::handleChangeFocus("down")
 
 ; Move active window (Win + Ctrl + Arrows):
-#^Left::handleMoveKey("left")
-#^Right::handleMoveKey("right")
-#^Up::handleMoveKey("up")
-#^Down::handleMoveKey("down")
+#^Left::handleMoveWindow("left")
+#^Right::handleMoveWindow("right")
+#^Up::handleMoveWindow("up")
+#^Down::handleMoveWindow("down")
 
 ; Resize active window (Win + Alt + Arrows):
 #!Left::Run, komorebic.exe resize-axis horizontal decrease, , Hide return
@@ -34,27 +34,42 @@
 
 ;; WORKSPACES:
 ; Change workspace (Win + Digit)
-#1::handleChangeWorkspaceKey(0)
-#2::handleChangeWorkspaceKey(1)
-#3::handleChangeWorkspaceKey(2)
-#4::handleChangeWorkspaceKey(3)
-#5::handleChangeWorkspaceKey(4)
+#1::handleFocusWorkspaceByIndex(0)
+#2::handleFocusWorkspaceByIndex(1)
+#3::handleFocusWorkspaceByIndex(2)
+#4::handleFocusWorkspaceByIndex(3)
+#5::handleFocusWorkspaceByIndex(4)
 
 ; Move window to workspace (Win + Ctrl + Digit)
-#^1::handleMoveToWorkspaceKey(0)
-#^2::handleMoveToWorkspaceKey(1)
-#^3::handleMoveToWorkspaceKey(2)
-#^4::handleMoveToWorkspaceKey(3)
-#^5::handleMoveToWorkspaceKey(4)
+#^1::handleMoveToWorkspaceByIndex(0)
+#^2::handleMoveToWorkspaceByIndex(1)
+#^3::handleMoveToWorkspaceByIndex(2)
+#^4::handleMoveToWorkspaceByIndex(3)
+#^5::handleMoveToWorkspaceByIndex(4)
+
+; Change workspace in order (Win + PgDn/PgUp)
+#PgUp::handleFocusWorkspaceByDirection("up")
+#PgDn::handleFocusWorkspaceByDirection("down")
+
+; Move window to workspace in order (Win + Ctrl + PgDn/PgUp)
+#^PgUp::handleMoveToWorkspaceByDirection("up")
+#^PgDn::handleMoveToWorkspaceByDirection("down")
+
+;; MONITORS: 
+; Change monitor in order (Win + Home/End)
+#Home::handleFocusMonitorByDirection("left")
+#End::handleFocusMonitorByDirection("right")
+
+; Move to monitor in order (Win + Home/End)
+#^Home::handleMoveToMonitorByDirection("left")
+#^End::handleMoveToMonitorByDirection("right")
 
 ;; LAYOUTS:
 ; Change layout in circle (see `LAYOUTS`) (Win + [)
 #$[::handleChangeLayoutKey()
 
-; Flip horizontally (Win + X):
+; Flip horizontally/vertically (Win + X/Y):
 #x::Run, komorebic.exe flip-layout horizontal, , Hide return
-
-; Flip vertically (Win + Y):
 #y::Run, komorebic.exe flip-layout vertical, , Hide return
 
 ; Force a retile if things get janky (Win + Alt + R):
