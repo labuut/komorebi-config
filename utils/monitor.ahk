@@ -1,3 +1,4 @@
+#Warn
 #Include %A_ScriptDir%
 
 
@@ -17,7 +18,7 @@ setMonitorKmrIndex(monitorKmrIndex) {
     MONITOR_KMR_INDEX := monitorKmrIndex
 }
 
-setMonitorKmrIndexByDirection(direction) {
+getMonitorKmrIndexByDirection(direction) {
     currentMonitorKmrIndex := getMonitorKmrIndex()
 
     newMonitorIndex :=
@@ -33,36 +34,27 @@ setMonitorKmrIndexByDirection(direction) {
                 : (currentMonitorKmrIndex + 1)
     }
     
-    setMonitorKmrIndex(newMonitorIndex)
-    return
+    return newMonitorIndex
 }
 
-getCurrentMonitorAhkIndex() {
-	SysGet, monitorsCount, MonitorCount
-    WinGetActiveStats, winTitle, W, H, winX, winY
+getActiveMonitorAhkIndexByCursor() {
+    Coordmode, Mouse, Screen
+    MouseGetPos, xCoord, yCoord 
 
-    ; this value depends on params `invisible-borders` and `workspace-padding` from `config.ahk`
-    ; it can be recognize by AHK's `Window Spy` (`Active Window Position`)
-    offset := 3
-    offsettedWinX := winX + offset
+	SysGet, monitorsCount, MonitorCount
 
 	Loop %monitorsCount% {
-        SysGet, monitor, MonitorWorkArea, %a_index%
+        SysGet, monitor, Monitor, %a_index%
 
-        isLeftMonitor := a_index = 1
-        isRightMonitor := a_index = monitorsCount
-        
-        ; window can be more left then monitorLeft
-        if (isLeftMonitor && (offsettedWinX < monitorLeft)) {
-            return %a_index%
-        }
-        ; window can be more right then monitorRight
-        if (isRightMonitor && (offsettedWinX > monitorRight)) {
-            return %a_index%
-        }
-		if (offsettedWinX >= monitorLeft && offsettedWinX < monitorRight) {
-			return %a_index%
-        }
+        isActiveMonitor := (xCoord >= monitorLeft)
+            && (xCoord < monitorRight)
+            && (yCoord >= monitorTop) 
+            && (yCoord < monitorBottom)
+
+        if (isActiveMonitor) {
+            ToolTip, currentMonitor: %a_index%
+			return %a_index%ActiveMon := A_Index
+		}
 	}
 }
 
@@ -71,16 +63,16 @@ calculateMonitorCenterX(monitorKmrIndex) {
 
     SysGet, monitor, MonitorWorkArea, %monitorAhkIndex%
 
-    centerX :=
+    xCoord :=
 
     if (Abs(monitorRight) > Abs(monitorLeft)) {
-        centerX := (monitorRight - monitorLeft) / 4 + monitorLeft
+        xCoord := (monitorRight - monitorLeft) / 10 + monitorLeft
     }
     if (Abs(monitorRight) < Abs(monitorLeft)) {
-        centerX := (monitorLeft - monitorRight) / 4 + monitorRight
+        xCoord := (monitorLeft - monitorRight) / 10 + monitorRight
     }
 
-    return centerX
+    return xCoord
 }
 
 calculateMonitorCenterY(monitorKmrIndex) {
@@ -92,20 +84,24 @@ calculateMonitorCenterY(monitorKmrIndex) {
 }
 
 moveMouseToMonitorByDirection(direction) {
-    setMonitorKmrIndexByDirection(direction)
-
     newMonitorKmrIndex := getMonitorKmrIndex()
 
-    centerX := calculateMonitorCenterX(newMonitorKmrIndex)
-    centerY := calculateMonitorCenterY(newMonitorKmrIndex)
+    xCoord := calculateMonitorCenterX(newMonitorKmrIndex)
+    yCoord := calculateMonitorCenterY(newMonitorKmrIndex)
 
     CoordMode, Mouse, Screen 
-    MouseMove, centerX, centerY
+    MouseMove, xCoord, yCoord
 }
 
 moveWindowToMonitorByDirection(direction) {
-    setMonitorKmrIndexByDirection(direction)
     Run, komorebic.exe move-to-monitor %MONITOR_KMR_INDEX%, Hide
+}
+
+checkIsScreenEmpty() {
+    MouseGetPos,,, winId
+    WinGetClass, winCLass, ahk_id %winId%
+
+    return winCLass = "Progman"
 }
 
 ; ; Unusable
