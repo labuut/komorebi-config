@@ -36,7 +36,7 @@ Run, komorebic.exe workspace-padding 1 3 1, , Hide
 
 Run, komorebic.exe workspace-layout 1 0 columns, , Hide
 Run, komorebic.exe workspace-layout 1 1 columns, , Hide
-Run, komorebic.exe workspace-layout 1 2 columns, , Hide
+Run, komorebic.exe workspace-layout 1 2 bsp, , Hide
 Run, komorebic.exe workspace-layout 1 3 columns, , Hide
 
 ; App rules
