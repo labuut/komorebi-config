@@ -1,18 +1,17 @@
 #Persistent
 #Warn
-
 #Include %A_ScriptDir%\utils\index.ahk
 
 
 ; Not usable now
 handleChangeActiveWindow() {
-  currentMonitorAhkIndex := getCurrentMonitorAhkIndex()
+  currentMonitorAhkIndex := getActiveMonitorAhkIndexByCursor()
   currentMonitorKmrIndex := toMonitorKmrIndex(currentMonitorAhkIndex)
 
   setMonitorKmrIndex(currentMonitorKmrIndex)
 
   ; notifyCurrentMonitorAndWorkspace("Change Active Window")
-  notifyCurrentMonitorAndWorkspace()
+  ; notifyCurrentMonitorAndWorkspace()
 }
   
 handleChangeFocusKey(direction) {
