@@ -57,7 +57,7 @@ getActiveMonitorAhkIndexByCursor() {
 	}
 }
 
-calculateMonitorCenterX(monitorKmrIndex) {
+calculateXCoordInCurrentMonitor(monitorKmrIndex) {
     monitorAhkIndex := toMonitorAhkIndex(monitorKmrIndex)
 
     SysGet, monitor, MonitorWorkArea, %monitorAhkIndex%
@@ -74,7 +74,7 @@ calculateMonitorCenterX(monitorKmrIndex) {
     return xCoord
 }
 
-calculateMonitorCenterY(monitorKmrIndex) {
+calculateYCoordInCurrentMonitor(monitorKmrIndex) {
     monitorAhkIndex := toMonitorAhkIndex(monitorKmrIndex)
     
     SysGet, monitor, MonitorWorkArea, %monitorAhkIndex%
@@ -85,8 +85,8 @@ calculateMonitorCenterY(monitorKmrIndex) {
 moveMouseToMonitorByDirection(direction) {
     newMonitorKmrIndex := getMonitorKmrIndex()
 
-    xCoord := calculateMonitorCenterX(newMonitorKmrIndex)
-    yCoord := calculateMonitorCenterY(newMonitorKmrIndex)
+    xCoord := calculateXCoordInCurrentMonitor(newMonitorKmrIndex)
+    yCoord := calculateYCoordInCurrentMonitor(newMonitorKmrIndex)
 
     CoordMode, Mouse, Screen 
     MouseMove, xCoord, yCoord
