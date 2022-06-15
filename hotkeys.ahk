@@ -1,3 +1,4 @@
+#Warn
 #Include %A_ScriptDir%\utils\index.ahk
 
 
@@ -6,7 +7,7 @@
 ; # Win / LWin, the left Windows key
 ; + Shift
 
-;; WINDOWS;
+;; WINDOWS:
 ; Change focus (Win + Arrows):
 #Left::handleChangeFocusKey("left")
 #Right::handleChangeFocusKey("right")
@@ -31,9 +32,24 @@
 ; Swap window with master (Win + Enter):
 #Enter::Run, komorebic.exe promote, , Hide return
 
+;; WORKSPACES:
+; Change workspace (Win + Digit)
+#1::handleChangeWorkspaceKey(0)
+#2::handleChangeWorkspaceKey(1)
+#3::handleChangeWorkspaceKey(2)
+#4::handleChangeWorkspaceKey(3)
+#5::handleChangeWorkspaceKey(4)
+
+; Move window to workspace (Win + Ctrl + Digit)
+#^1::handleMoveToWorkspaceKey(0)
+#^2::handleMoveToWorkspaceKey(1)
+#^3::handleMoveToWorkspaceKey(2)
+#^4::handleMoveToWorkspaceKey(3)
+#^5::handleMoveToWorkspaceKey(4)
+
 ;; LAYOUTS:
-; Change layout in circle (see LAYOUTS array)
-#!l::handleChangeLayoutKey()
+; Change layout in circle (see `LAYOUTS`) (Win + [)
+#$[::handleChangeLayoutKey()
 
 ; Flip horizontally (Win + X):
 #x::Run, komorebic.exe flip-layout horizontal, , Hide return
@@ -51,11 +67,6 @@
 ; Komorebi start/stop (Win + Alt/Ctrl + K)
 #!k::Run, komorebic.exe start, , Hide return
 #^k::Run, komorebic.exe stop, , Hide return
-
-; TEST
-; #m::
-; Run, komorebic.exe manage, , Hide
-; return
 
 
 
