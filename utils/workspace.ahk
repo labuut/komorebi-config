@@ -39,12 +39,3 @@ focusWorkspaceByDirection(direction) {
 
     Run, komorebic.exe focus-workspace %workspaceIndex%, , Hide
 }
-
-moveWindowToWorkspaceByDirection(direction) {
-    setWorkspaceIndexByDirection(direction)
-
-    monitorKmrIndex := getMonitorKmrIndex()
-    workspaceIndex := getWorkspaceIndex(monitorKmrIndex)
-
-    Run, komorebic.exe move-to-workspace %workspaceIndex%, , Hide
-}

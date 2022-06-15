@@ -92,10 +92,6 @@ moveMouseToMonitorByDirection(direction) {
     MouseMove, xCoord, yCoord
 }
 
-moveWindowToMonitorByDirection(direction) {
-    Run, komorebic.exe move-to-monitor %MONITOR_KMR_INDEX%, Hide
-}
-
 checkIsScreenEmpty() {
     MouseGetPos,,, winId
     WinGetClass, winCLass, ahk_id %winId%
