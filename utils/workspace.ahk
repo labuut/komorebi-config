@@ -1,3 +1,4 @@
+#Warn
 #Include %A_ScriptDir%
 
 
