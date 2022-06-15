@@ -77,6 +77,23 @@ handleMoveKey(direction) {
 
 handleChangeLayoutKey() {
   changeLayout()
+  notifyCurrentLayout()
+}
 
-  return
+handleChangeWorkspaceKey(workspaceIndex) {
+  currentMonitorKmrIndex := getMonitorKmrIndex()
+  setWorkspaceIndex(currentMonitorKmrIndex, workspaceIndex)
+
+  Run, komorebic.exe focus-workspace %workspaceIndex%, , Hide
+
+  notifyCurrentMonitorAndWorkspace()
+}
+
+handleMoveToWorkspaceKey(workspaceIndex) {
+  currentMonitorKmrIndex := getMonitorKmrIndex()
+  setWorkspaceIndex(currentMonitorKmrIndex, workspaceIndex)
+
+  Run, komorebic.exe move-to-workspace %workspaceIndex%, , Hide
+
+  notifyCurrentMonitorAndWorkspace()
 }
